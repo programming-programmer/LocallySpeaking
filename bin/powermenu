@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-op=$( echo -e " Poweroff\n Reboot\n Lock\n Logout" | bemenu -p "power" --tb '#000000' --fb '#000000' --cb '#000000' --nb '#000000' --hb '#000000' --fbb '#000000' --sb '#000000' --ab '#000000' --tf '#ffffff' --nf '#808080' --af '#808080' --hf '#ffffff')
+op=$( echo -e " Poweroff\n Reboot\n Lock\n Logout" | bemenu -p "power" --tb '#000000' --fb '#000000' --cb '#000000' --nb '#000000' --hb '#000000' --fbb '#000000' --sb '#000000' --ab '#000000' --tf '#ffffff' --nf '#808080' --af '#808080' --hf '#ffffff' | awk '{print tolower($2)}')
 
 case $op in 
     poweroff)
@@ -10,7 +10,7 @@ case $op in
         systemctl reboot
         ;;
     lock)
-        swaylock -f -l -i /home/undefined_user/.local/share/backgrounds/login_tux.png && playerctl pause
+         swaylock -i /home/undefined_user/.local/share/backgrounds/login_tux.png
         ;;
     logout)
         swaymsg exit
