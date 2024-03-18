@@ -64,7 +64,7 @@ def build_bemenu_string(windows):
 # Executes bemenu with the given input string
 def show_bemenu(windows):
 
-    command="bemenu -p \"Windows: \""
+    command="bemenu -b -p \"Windows: \""
     
     process = subprocess.Popen(command,shell=True,stdin=subprocess.PIPE,stdout=subprocess.PIPE)
     return process.communicate(input=windows)[0]
