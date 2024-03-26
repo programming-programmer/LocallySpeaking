@@ -2,96 +2,58 @@
 
 if [ $1 == "l" ]
 then
-    # Fcitx5
-    sed -i "s/Gruvbox-Dark/Gruvbox-Light/g" ~/.config/fcitx5/conf/classicui.conf
-    killall fcitx5
-    # Wallpaper
-    feh --bg-fill ~/Pictures/Background/linux-gruvbox-1920×1080.jpg
-    # Dunst
-    cp ~/.config/dunst/dunstrc-gruvbox-light ~/.config/dunst/dunstrc
-    killall dunst
-    # Rofi
-    sed -i "s/grubox-dark/gruvbox-light/g" ~/.config/rofi/config.rasi
-    # Dwm
-    sed -i "s/col_gray1\[\]       \= \"\#282828\"/col_gray1\[\]       = \"\#fdf1c7\"/g" ~/.dwm/config.def.h
-    sed -i "s/col_gray2\[\]       \= \"\#3c3836\"/col_gray2\[\]       = \"\#ebdbb2\"/g" ~/.dwm/config.def.h
-    sed -i "s/col_gray3\[\]       \= \"\#ebdbb2\"/col_gray3\[\]       = \"\#3c3836\"/g" ~/.dwm/config.def.h
-    sed -i "s/col_gray4\[\]       \= \"\#fdf1c7\"/col_gray4\[\]       = \"\#282828\"/g" ~/.dwm/config.def.h
-    sed -i "s/col_cyan\[\]        \= \"\#d79921\"/col_cyan\[\]        = \"\#fabd2f\"/g" ~/.dwm/config.def.h
-    source ~/.config/fish/functions/dwm_recompile.fish
-    pkill -1 dwm
-    # Alacritty
-    cp ~/.config/alacritty/alacritty-gruvbox-light.yml ~/.config/alacritty/alacritty.yml
-    # Kitty
-    sed -i "s/dark/light/g" ~/.config/kitty/kitty.conf
-    # Fish
-    fish -c gruvbox_light
-    # Global theme
-    sed -i "s/Gruvbox-Material-Dark/Pop-gruvbox/g" ~/.config/xsettingsd/xsettingsd.conf
-    sed -i 's/Gruvbox-Material-Dark/Pop-gruvbox/g' ~/.gtkrc-2.0
-    sed -i "s/Gruvbox-Material-Dark/Pop-gruvbox/g" ~/.config/gtk-3.0/settings.ini
-    pkill -1 xsettingsd
-    # Vim
-    sed -i "s/background\=dark/background\=light/g" ~/.vimrc
-    # Emacs
-    sed -i "s/doom-gruvbox)/doom-gruvbox-light)/g" ~/.doom.d/config.el
-    emacsclient -e '(kill-emacs)'
-    # Code
-    sed -i "s/Gruvbox Material Dark/Gruvbox Material Light/g" ~/.config/Code/User/settings.json
-    # Sublime
-    sed -i "s/Dark/Light/g" ~/.config/sublime-text-3/Packages/User/Preferences.sublime-settings
-    # Zathura
-    cp ~/.config/zathura/zathurarc-gruvbox-light ~/.config/zathura/zathurarc
-    # Daemons
-    sh ~/.local/bin/startdaemon
-    # Notify
+    ## LIGHT THEME
+    # Firefox and GTK apps - no lol
+    # Terminal
+    sed -i "s/dark/light/" ~/.config/foot/foot.ini
+    # Neovim
+    sed -i "2s/midnight/paper/" ~/.config/nvim/lua/undefined_user/plugins/colors.lua
+    # Tmux
+    # Background statusbar
+    sed -i "19s/colour232/colour252/g" ~/.config/tmux/tmux.conf
+    # Text
+    sed -i "20s/colour252/colour232/g" ~/.config/tmux/tmux.conf
+    sed -i "24s/colour252/colour232/g" ~/.config/tmux/tmux.conf
+    # Swaylock
+    sed -i "s/black/white/" ~/.config/sway/config.d/autostart
+    sed -i "s/black/white/" ~/.config/sway/config.d/system_n_peripherals
+    sed -i "s/black/white/" ~/.local/bin/powermenu
+    # Bemenu - Maybe not 🤭
+    # Waybar
+    sed -i "s/white/black/g" ~/.config/waybar/style.css
+    sed -i '28s/.*/background-color: rgba(255, 255, 255, 0.8);/g' ~/.config/waybar/style.css
+
+    # Sway
+    sed -i "10s/.*/client.focused #000000 #000000 #FFFFFF #000000 #000000/g" ~/.config/sway/config.d/system_n_peripherals
+    sed -i "11s/.*/client.unfocused #808080 #808080 #FFFFFF #808080 #808080/g" ~/.config/sway/config.d/system_n_peripherals
+
+    # RESTART
+    swaymsg "exec pkill waybar && swaymsg reload" && pkill foot && tmux kill-server 
     notify-send "Switch to Light Now!" -t 3000
-elif [ $1 == "n" ]
+elif [ $1 == "d" ]
 then
-    # Fcitx5
-    sed -i "s/Gruvbox-Light/Gruvbox-Dark/g" ~/.config/fcitx5/conf/classicui.conf
-    killall fcitx5
-    # Wallpaper
-    feh --bg-fill ~/Pictures/Background/gruvbox_pacman.png
-    # Dunst
-    cp ~/.config/dunst/dunstrc-gruvbox-dark ~/.config/dunst/dunstrc
-    killall dunst
-    # Rofi
-    sed -i "s/grubox-light/gruvbox-dark/g" ~/.config/rofi/config.rasi
-    # Dwm
-    sed -i "s/col_gray1\[\]       \= \"\#fdf1c7\"/col_gray1\[\]       = \"\#282828\"/g" ~/.dwm/config.def.h
-    sed -i "s/col_gray2\[\]       \= \"\#ebdbb2\"/col_gray2\[\]       = \"\#3c3836\"/g" ~/.dwm/config.def.h
-    sed -i "s/col_gray3\[\]       \= \"\#3c3836\"/col_gray3\[\]       = \"\#ebdbb2\"/g" ~/.dwm/config.def.h
-    sed -i "s/col_gray4\[\]       \= \"\#282828\"/col_gray4\[\]       = \"\#fdf1c7\"/g" ~/.dwm/config.def.h
-    sed -i "s/col_cyan\[\]        \= \"\#fabd2f\"/col_cyan\[\]        = \"\#d79921\"/g" ~/.dwm/config.def.h
-    source ~/.config/fish/functions/dwm_recompile.fish
-    pkill -1 dwm
-    # Alacritty
-    cp ~/.config/alacritty/alacritty-gruvbox-dark.yml ~/.config/alacritty/alacritty.yml
-    # Kitty
-    sed -i "s/light/dark/g" ~/.config/kitty/kitty.conf
-    # Fish
-    fish -c gruvbox_dark
-    # Global theme
-    sed -i "s/Pop-gruvbox/Gruvbox-Material-Dark/g" ~/.config/xsettingsd/xsettingsd.conf
-    sed -i 's/Pop-gruvbox/Gruvbox-Material-Dark/g' ~/.gtkrc-2.0
-    sed -i "s/Pop-gruvbox/Gruvbox-Material-Dark/g" ~/.config/gtk-3.0/settings.ini
-    pkill -1 xsettingsd
-    # Vim
-    sed -i "s/background\=light/background\=dark/g" ~/.vimrc
-    # Emacs
-    sed -i 's/doom-gruvbox-light)/doom-gruvbox)/g' ~/.doom.d/config.el
-    emacsclient -e '(kill-emacs)'
-    # Code
-    sed -i "s/Gruvbox Material Light/Gruvbox Material Dark/g" ~/.config/Code/User/settings.json
-    # Sublime
-    sed -i "s/Light/Dark/g" ~/.config/sublime-text-3/Packages/User/Preferences.sublime-settings
-    # Zathura
-    cp ~/.config/zathura/zathurarc-gruvbox-dark ~/.config/zathura/zathurarc
-    # Daemons
-    sh ~/.local/bin/startdaemon
-    # Notify
+    ## DARK THEME
+    # Firefox and GTK apps
+    sed -i "s/0/1/" ~/.config/gtk-3.0/settings.ini
+    # Terminal
+    sed -i "s/light/dark/" ~/.config/foot/foot.ini
+    # Neovim
+    sed -i "2s/paper/midnight/" ~/.config/nvim/lua/undefined_user/plugins/colors.lua
+    # Tmux
+    # Background statusbar
+    sed -i "19s/colour252/colour232/g" ~/.config/tmux/tmux.conf
+    # Text
+    sed -i "20s/colour232/colour252/g" ~/.config/tmux/tmux.conf
+    sed -i "24s/colour232/colour252/g" ~/.config/tmux/tmux.conf
+    # Bemenu - Maybe not 🤭
+    # Waybar
+    sed -i "s/black/white/g" ~/.config/waybar/style.css
+    sed -i '28s/.*/background-color: rgba(0, 0, 0, 0.8);/g' ~/.config/waybar/style.css
+
+    # Sway
+    sed -i "10s/.*/client.focused #FFFFFF #FFFFFF #000000 #FFFFFF #FFFFFF/g" ~/.config/sway/config.d/system_n_peripherals
+    sed -i "11s/.*/client.unfocused #808080 #808080 #000000 #808080 #808080/g" ~/.config/sway/config.d/system_n_peripherals
+
+    swaymsg "exec pkill waybar && swaymsg reload" && pkill foot && tmux kill-server
     notify-send "Switch to Dark Now!" -t 3000
 fi
-
-kitty --class kitty-reload --single-instance -e kitty_reload_x
