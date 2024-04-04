@@ -10,7 +10,7 @@ case $op in
         systemctl reboot
         ;;
     lock)
-         swaylock -i /home/undefined_user/.local/share/backgrounds/ripple_white.png
+         swaylock -i /home/undefined_user/.local/share/backgrounds/ripple_black.png
         ;;
     logout)
         swaymsg exit

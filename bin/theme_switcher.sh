@@ -8,6 +8,7 @@ then
     sed -i "s/dark/light/" ~/.config/foot/foot.ini
     # Neovim
     sed -i "2s/midnight/paper/" ~/.config/nvim/lua/undefined_user/plugins/colors.lua
+    sed -i "10s/white/black/" ~/.config/nvim/lua/undefined_user/plugins/colors.lua
     # Tmux
     # Background statusbar
     sed -i "19s/colour232/colour252/g" ~/.config/tmux/tmux.conf
@@ -39,12 +40,17 @@ then
     sed -i "s/light/dark/" ~/.config/foot/foot.ini
     # Neovim
     sed -i "2s/paper/midnight/" ~/.config/nvim/lua/undefined_user/plugins/colors.lua
+    sed -i "10s/black/white/" ~/.config/nvim/lua/undefined_user/plugins/colors.lua
     # Tmux
     # Background statusbar
     sed -i "19s/colour252/colour232/g" ~/.config/tmux/tmux.conf
     # Text
     sed -i "20s/colour232/colour252/g" ~/.config/tmux/tmux.conf
     sed -i "24s/colour232/colour252/g" ~/.config/tmux/tmux.conf
+    # Swaylock
+    sed -i "s/white/black/" ~/.config/sway/config.d/autostart
+    sed -i "s/white/black/" ~/.config/sway/config.d/system_n_peripherals
+    sed -i "s/white/black/" ~/.local/bin/powermenu
     # Bemenu - Maybe not 🤭
     # Waybar
     sed -i "s/black/white/g" ~/.config/waybar/style.css
